@@ -1,3 +1,0 @@
-# Elan Fingerprint Sensor 04f3:0c4b
-SUBSYSTEM=="usb", ATTRS{idVendor}=="04f3", ATTRS{idProduct}=="0c4b", ATTRS{dev}=="*", TEST=="power/control", ATTR{power/control}="auto", MODE="0660", TAG+="uaccess"
-SUBSYSTEM=="usb", ATTRS{idVendor}=="04f3", ATTRS{idProduct}=="0c4b", ENV{LIBFPRINT_DRIVER}="Elan Fingerprint Sensor" 

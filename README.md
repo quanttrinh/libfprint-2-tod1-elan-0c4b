@@ -1,2 +1,3 @@
-This is the repackaging of the Elan 0c4b driver for Fedora (Not tested).
-The binary is by Lenono for Ubuntu: https://support.lenovo.com/us/en/downloads/ds560935-elan-fingerprint-driver-for-linux-thinkpad-e14-gen-4-thinkpad-e15-gen-4
+This is the repackaging of the Elan 0c4b driver for Fedora.
+
+The binary is from Ubuntu: https://launchpad.net/~libfprint-tod1-group/+archive/ubuntu/ppa/+packages

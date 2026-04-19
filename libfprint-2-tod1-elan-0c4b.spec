@@ -1,33 +1,39 @@
-%global debug_package       %{nil}
+%global debug_package %{nil}
 
 Name:           libfprint-2-tod1-elan-0c4b
 
 Version:        0.1.0
 Release:        %autorelease
-Summary:        Repackaged driver module binary from Lenovo for Elan 04F3:0C4B fingerprint reader
+Summary:        Repackaged Elan fingerprint reader driver module from Ubuntu for 04F3:0C4B
 
-License:        GPL-3.0
-URL:            https://support.lenovo.com/us/en/downloads/ds560935-elan-fingerprint-driver-for-linux-thinkpad-e14-gen-4-thinkpad-e15-gen-4
-Source0:        https://github.com/QuanTrinhCA/libfprint-2-tod1-elan-0c4b/archive/refs/tags/%{version}.tar.gz
+Provides:       %{name} == %{version}
+Obsoletes:      %{name} < %{version}
 
-Requires:       libfprint-tod
-#For installing udev rules
+License:        GPL-3.0-or-later
+URL:            https://launchpad.net/~libfprint-tod1-group
+Source0:        https://launchpad.net/~libfprint-tod1-group/+archive/ubuntu/ppa/+sourcefiles/libfprint-2-tod1-elan/%{version}+2404-0ubuntu1/libfprint-2-tod1-elan_%{version}+2404.orig.tar.gz
+ExclusiveArch:  x86_64
+
 BuildRequires:  systemd
 
 %description
-Repackaged Elan driver module from Lenovo for fingerprint reader to support 04F3:0C4B.
+Repackaged Elan fingerprint reader driver module from Ubuntu for 04F3:0C4B
 
 %prep
-%setup -q -n libfprint-2-tod1-elan-0c4b-%{version}
+%autosetup -C
+
+%build
 
 %install
-mv libfprint-2-tod1-elan-0c4b-%{version}/* %{_builddir}/libfprint-2-tod1-elan-0c4b-%{version}/
-install -p -d -m 0755 %{buildroot}%{_libdir}/libfprint-2/tod-1/
-install -m 0644 usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-2-tod1-elan.so %{buildroot}%{_libdir}/libfprint-2/tod-1/libfprint-2-tod1-elan.so
-install -p -d -m 0755 %{buildroot}%{_udevrulesdir}
-install -m 0644 lib/udev/rules.d/60-libfprint-2-tod1-elan.rules %{buildroot}%{_udevrulesdir}/60-libfprint-2-tod1-elan.rules
+install -p -m 0755 -D usr/lib/x86_64-linux-gnu/libfprint-2/tod-1/libfprint-2-tod1-elan-0c4b-%{version}.so %{buildroot}%{_libdir}/libfprint-2/tod-1/libfprint-2-tod1-elan-0c4b.so
+install -p -m 0644 -D lib/udev/rules.d/60-libfprint-2-tod1-elan.rules %{buildroot}%{_udevrulesdir}/60-libfprint-2-tod1-elan-0c4b.rules
+
+%check
 
 %files
 %defattr(-,root,root,-)
-%{_libdir}/libfprint-2/tod-1/libfprint-2-tod1-elan.so
-%{_udevrulesdir}/60-libfprint-2-tod1-elan.rules
+%{_libdir}/libfprint-2/tod-1/libfprint-2-tod1-elan-0c4b.so
+%{_udevrulesdir}/60-libfprint-2-tod1-elan-0c4b.rules
+
+%changelog
+%autochangelog
